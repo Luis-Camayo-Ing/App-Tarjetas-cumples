@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cumpleaños-BAFUR#3</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Font for card text (bold condensed look) -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="main-header">
+    <h1 class="main-title">TARJETAS DE CUMPLEAÑOS BAFUR N°3</h1>
+  </header>
+  <main class="container layout">
+    <aside class="sidebar">
+      <h1>Foto Elogiado</h1>
+
+      <div class="drag-area" id="dragArea">
+        <input id="photoInput" type="file" accept="image/*" class="hidden-file">
+        <div class="drag-inner">
+          <div class="drag-title">Arrastra y suelta la foto aquí</div>
+          <div class="drag-sub">o <button id="pickFileBtn" class="link-btn">Selecciona un archivo</button></div>
+          <div id="fileName" class="file-name"></div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 12px;">
+        <a href="https://www.remove.bg/es" target="_blank" rel="noopener noreferrer">
+          <button class="btn-remove-bg">Quitar fondo a imagen</button>
+        </a>
+      </div>
+
+      <div class="form-group">
+        <label for="templateInput"><strong>Tarjeta Base</strong></label>
+        <div class="drag-area" id="templateDragArea">
+          <input id="templateInput" type="file" accept="image/*" class="hidden-file">
+          <div class="drag-inner">
+            <div class="drag-title">Arrastra y suelta la plantilla aquí</div>
+            <div class="drag-sub">o <button id="pickTemplateBtn" class="link-btn">Selecciona un archivo</button></div>
+            <div id="templateFileName" class="file-name"></div>
+          </div>
+        </div>
+        <div class="help">Sube la imagen de plantilla que siempre se usará como fondo de la tarjeta.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="footerImgInput"><strong>Pie de foto como imagen</strong></label>
+        <div class="drag-area" id="footerImgDragArea">
+          <input id="footerImgInput" type="file" accept="image/*" class="hidden-file">
+          <div class="drag-inner">
+            <div class="drag-title">Arrastra y suelta la imagen aquí</div>
+            <div class="drag-sub">o <button id="pickFooterImgBtn" class="link-btn">Selecciona un archivo</button></div>
+            <div id="footerImgFileName" class="file-name"></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px">
+          <label style="display:flex;align-items:center;gap:6px"><input id="editFooterImgToggle" type="checkbox"> Modo editar</label>
+          <button id="footerImgReset" type="button">Resetear pie imagen</button>
+          
+        </div>
+        <div class="help">Sube una imagen para el pie de foto (ej. barra inferior). Activa "Modo editar" para arrastrar/ajustar en la previsualización.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="audioInput"><strong>Audio (para video)</strong></label>
+        <div class="drag-area" id="audioDragArea">
+          <input id="audioInput" type="file" accept="audio/*" class="hidden-file">
+          <div class="drag-inner">
+            <div class="drag-title">Arrastra y suelta el audio aquí</div>
+            <div class="drag-sub">o <button id="pickAudioBtn" class="link-btn">Selecciona un archivo</button></div>
+            <div id="audioFileName" class="file-name"></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px">
+          <button id="clearAudioBtn" type="button">Limpiar audio</button>
+        </div>
+        <div class="help">Sube un archivo de audio (MP3, WAV, etc.) para generar la tarjeta como video en lugar de imagen.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="phraseSelect"><strong>Frase</strong></label>
+        <div class="phrase-row">
+          <select id="phraseSelect"></select>
+          <input id="newPhraseInput" type="text" placeholder="Nueva frase" aria-label="Nueva frase">
+          <button id="addPhraseBtn" title="Agregar frase">Agregar</button>
+        </div>
+        <ul id="phraseList" class="phrase-list" aria-label="Frases guardadas"></ul>
+      </div>
+
+      <div class="form-group">
+        <label for="nameInput"><strong>Nombre Elogiado</strong></label>
+        <input id="nameInput" type="text" placeholder="Ej: CN. LUIS CAMAYO">
+      </div>
+      <div class="form-group">
+        <label for="name2Input"><strong>Batallón-Compañía</strong></label>
+        <input id="name2Input" type="text" placeholder="Ej: COFUR COBRA">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group small">
+          <label for="dateInput"><strong>Fecha</strong></label>
+          <input id="dateInput" type="date">
+        </div>
+
+      </div>
+
+
+      <div class="actions">
+        <button id="downloadVideoBtn" class="primary">Descargar Video</button>
+        <button id="downloadImageBtn" class="primary">Descargar Imagen</button>
+      </div>
+
+      <div class="actions" style="margin-top: 8px;">
+        <button id="clearBtn">Limpiar</button>
+      </div>
+
+      <div class="form-group">
+        <label><strong>Ajustar Foto Elogiado</strong></label>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <label style="display:flex;align-items:center;gap:6px"><input id="editOverlayToggle" type="checkbox"> Modo editar</label>
+          <button id="resetOverlayBtn" type="button">Resetear caja</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label><strong>Editar campos de la tarjeta</strong></label>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <label style="display:flex;align-items:center;gap:6px"><input id="editFieldsToggle" type="checkbox"> Modo editar campos</label>
+          <select id="fieldSelect" style="min-width:160px">
+            <option value="phrase">Frase</option>
+            <option value="day">Día</option>
+            <option value="month">Mes</option>
+            <option value="name1">Nombre Elogiado</option>
+            <option value="name2">Batallón-Compañía</option>
+
+          </select>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+          
+          <label style="font-size:12px">Tamaño <input id="fieldSize" type="number" min="6" max="200" step="1" style="width:80px"></label>
+          <input id="fieldSizeRange" type="range" min="6" max="200" step="1" style="width:160px">
+          <button id="saveFieldBtn" type="button">Guardar</button>
+          <button id="resetFieldBtn" type="button">Resetear</button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="preview">
+      <h2>Previsualización</h2>
+      <div class="canvas-wrap">
+        <canvas id="previewCanvas"></canvas>
+      </div>
+      <p class="note">El fondo original de la foto se mantiene en la exportación.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
